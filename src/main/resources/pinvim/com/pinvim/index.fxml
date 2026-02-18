@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="root" alignment="CENTER" stylesheets="style.scss" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pinvim.com.pinvim.Controller.Controller">
+   <MenuBar>
+     <menus>
+       <Menu mnemonicParsing="false" text="File">
+         <items>
+           <MenuItem fx:id="fileOpenButton" mnemonicParsing="false" onAction="#openFile" text="Open" />
+               <MenuItem fx:id="fileSaveButton" mnemonicParsing="false" onAction="#saveFile" text="Save" />
+               <MenuItem fx:id="fileSaveAsButton" mnemonicParsing="false" onAction="#saveFileAs" text="Save As" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Interpreter">
+         <items>
+           <MenuItem mnemonicParsing="false" onAction="#openExecutor" text="Run" />
+               <MenuItem mnemonicParsing="false" text="Debug" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Help">
+         <items>
+           <MenuItem mnemonicParsing="false" onAction="#openHelp" text="About" />
+         </items>
+       </Menu>
+     </menus>
+   </MenuBar>
+   <HBox prefHeight="23.0" prefWidth="558.0">
+      <children>
+         <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+            <children>
+               <Label fx:id="fileName" text="Editing untilted.pin" />
+               <Label fx:id="state" layoutX="10.0" layoutY="14.0" text="*unsaved" textFill="RED">
+                  <font>
+                     <Font size="20.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets left="10.0" />
+                  </HBox.margin>
+               </Label>
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+            <children>
+               <Button mnemonicParsing="false" onAction="#openExecutor" text="Execute">
+                  <HBox.margin>
+                     <Insets right="10.0" />
+                  </HBox.margin>
+               </Button>
+            </children>
+         </HBox>
+      </children>
+      <padding>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
+   </HBox>
+   <ScrollPane fx:id="scrollpane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="169.0" prefWidth="558.0" VBox.vgrow="ALWAYS">
+      <content>
+         <TextFlow fx:id="codeView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" onMouseEntered="#focus" prefHeight="228.0" prefWidth="558.0">
+           <Text style="-fx-font-size: 20" text="¦" />
+            <padding>
+               <Insets left="10.0" top="5.0" />
+            </padding>
+         </TextFlow>
+      </content>
+   </ScrollPane>
+</VBox>

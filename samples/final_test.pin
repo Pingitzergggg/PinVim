@@ -1,0 +1,13 @@
+var @int number = 13+567/466-245;
+
+if (false == true) {
+	print "This should not run down";
+} else {
+	print "This is good";
+}
+
+loop 5 with i {
+	print i;
+}
+
+print "Finished";

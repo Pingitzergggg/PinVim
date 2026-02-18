@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="304.0" prefWidth="373.0" stylesheets="@style.scss" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pinvim.com.pinvim.Controller.HelperController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <ImageView fx:id="peter" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+        <image>
+            <Image url="@icon.png" />
+        </image>
+      <VBox.margin>
+         <Insets bottom="25.0" left="5.0" right="5.0" top="5.0" />
+      </VBox.margin>
+    </ImageView>
+   <Label fx:id="info" text="PinVim version: 1.0" />
+   <Label fx:id="info1" layoutX="134.0" layoutY="158.0" text="Pingy version: 1.0" />
+   <Label fx:id="info11" layoutX="138.0" layoutY="228.0" text="App created by Fyrra1 and Pingitzergggg" />
+   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <Label fx:id="info111" text="Github repository:" />
+         <Hyperlink text="Link" />
+      </children>
+   </HBox>
+    <Button fx:id="mainButton" onAction="#exitStage" prefHeight="32.0" prefWidth="73.0" text="OK" />
+</VBox>
