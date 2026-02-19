@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import pinvim.com.pinvim.Controller.HelperController;
@@ -20,6 +21,7 @@ public class Helper {
         stage.setTitle("peter alert");
         stage.setScene(display);
         stage.setResizable(false);
+        stage.getIcons().add(new Image(getClass().getResource("icon.png").toExternalForm()));
         stage.show();
     }
 }

@@ -1,11 +1,12 @@
 package pingy;
 
 import java.util.LinkedList;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Pool {
-    private final LinkedList<String> output = new LinkedList<>();
-    private final LinkedList<String> error = new LinkedList<>();
-    private final LinkedList<String> debug = new LinkedList<>();
+    private final ConcurrentLinkedQueue<String> output = new ConcurrentLinkedQueue<>();
+    private final ConcurrentLinkedQueue<String> error = new ConcurrentLinkedQueue<>();
+    private final ConcurrentLinkedQueue<String> debug = new ConcurrentLinkedQueue<>();
 
     private final static Pool instance = new Pool();
 
@@ -15,9 +16,9 @@ public class Pool {
 
     public static Pool getInstance() {return instance;}
 
-    public LinkedList<String> getOutputStream() {return this.output;}
-    public LinkedList<String> getErrorStream() {return this.error;}
-    public LinkedList<String> getDebugStream() {return this.debug;}
+    public ConcurrentLinkedQueue<String> getOutputStream() {return this.output;}
+    public ConcurrentLinkedQueue<String> getErrorStream() {return this.error;}
+    public ConcurrentLinkedQueue<String> getDebugStream() {return this.debug;}
 
     public void printToOutputStream(Object value) {
         output.add(value.toString());

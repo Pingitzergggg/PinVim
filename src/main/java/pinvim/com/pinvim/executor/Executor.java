@@ -2,6 +2,7 @@ package pinvim.com.pinvim.executor;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import pinvim.com.pinvim.Controller.ExecutorController;
 
@@ -22,6 +23,7 @@ public class Executor {
         stage.setTitle("Run - "+file.getName());
         stage.setResizable(true);
         stage.setScene(display);
+        stage.getIcons().add(new Image(getClass().getResource("icon.png").toExternalForm()));
         stage.show();
     }
 }

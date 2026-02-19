@@ -11,3 +11,7 @@ loop 5 with i {
 }
 
 print "Finished";
+
+loop 10 {
+	print "asd";
+}

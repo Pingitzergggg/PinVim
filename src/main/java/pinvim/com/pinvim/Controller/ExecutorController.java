@@ -2,20 +2,24 @@ package pinvim.com.pinvim.Controller;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Stage;
 import pingy.Main;
-import pingy.Pool;
+import pinvim.com.pinvim.Model.ExecutorModel.ExecutorModel;
 
 import java.io.File;
 import java.util.LinkedList;
+import java.util.List;
 
 public class ExecutorController {
     private LinkedList<String> oldState;
     private Main interpreter;
 
 
+    @FXML private Button terminateButton;
     @FXML private TextFlow outputDisplay;
     @FXML private Label title;
 
@@ -29,52 +33,38 @@ public class ExecutorController {
 
     public void terminate() {
         interpreter.interrupt();
+        Stage stage = (Stage) terminateButton.getScene().getWindow();
+        stage.close();
     }
 
     private void detectOutputStreamChanges() {
         Thread printer = new Thread(() -> {
-            Pool output = Pool.getInstance();
-            System.out.println("THREAD WARNING: Old value"+output.getOutputStream());
-            LinkedList<String> oldState = new LinkedList<>(output.getOutputStream());
-            LinkedList<String> oldErrorState = new LinkedList<>(output.getErrorStream());
+            ExecutorModel.init();
+            boolean dumpBeforeTerminate = false;
             while (true) {
-                LinkedList<String> newState = new LinkedList<>(output.getOutputStream());
-                LinkedList<String> newErrorState = new LinkedList<>(output.getErrorStream());
-                System.out.println("THREAD WARNING: New value "+newState);
-                System.out.println(oldState.size()+" "+newState.size());
-                if (oldState.size() < newState.size()) {
-                    System.out.println("THREAD WARNING CHANGE DETECTED");
-                    Platform.runLater(() -> {
-                        outputDisplay.getChildren().clear();
-                        for (String printline : output.getOutputStream()) {
-                            outputDisplay.getChildren().add(new Text(printline));
+                if (!interpreter.isAlive() || interpreter.isInterrupted()) dumpBeforeTerminate = true;
+                ExecutorModel.run();
+                LinkedList<String> changedOutput = ExecutorModel.getChangedOutputState() == null ? new LinkedList<>() : ExecutorModel.getChangedOutputState();
+                LinkedList<String> changedError = ExecutorModel.getChangedErrorState() == null ? new LinkedList<>() : ExecutorModel.getChangedErrorState();
+                LinkedList<LinkedList<String>> streamCollection = new LinkedList<>(List.of(changedOutput, changedError));
+                for (int i = 0; i < streamCollection.size(); ++i) {
+                    LinkedList<String> collection = streamCollection.get(i);
+                    if (!collection.isEmpty()) {
+                        StringBuilder bldr = new StringBuilder();
+                        for (String value : collection) {
+                            bldr.append(value);
                         }
-                    });
-                    oldState = newState;
+                        System.out.println("BLDR: "+bldr);
+                        Text printable = new Text(bldr.toString());
+                        printable.setStyle(i == 0 ? "-fx-text-fill: black;" : "-fx-text-fill: red;");
+                        Platform.runLater(() -> outputDisplay.getChildren().add(printable));
+                    }
                 }
-                if (oldErrorState.size() < newErrorState.size()) {
-                    Platform.runLater(() -> {
-                        for (int i = newErrorState.size()-1;
-                             i >= newErrorState.size()-1-(newErrorState.size()-oldErrorState.size());
-                             --i) {
-                                Text errorText = new Text(newErrorState.get(i));
-                                errorText.setStyle("fx-text-fill: red;");
-                                outputDisplay.getChildren().add(errorText);
-                        }
-                    });
-                }
-                if (!interpreter.isAlive()) {
-                    System.out.println("THIS RAN DOWN");
-                    Platform.runLater(() -> {
-                        outputDisplay.getChildren().clear();
-                        for (String printline : output.getOutputStream()) outputDisplay.getChildren().add(new Text(printline));
-                        for (int i = 1; i < output.getErrorStream().size(); ++i) {
-                            Text errorText = new Text(output.getErrorStream().get(i));
-                            errorText.setStyle("-fx-text-fill: red;");
-                            outputDisplay.getChildren().add(errorText);
-                        }
-                    });
-                    break;
+                if (dumpBeforeTerminate) break;
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

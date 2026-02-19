@@ -2,6 +2,7 @@ package pinvim.com.pinvim;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
@@ -17,6 +18,7 @@ public class Application extends javafx.application.Application {
         Scene scene = new Scene(fxmlLoader.load(), 1000, 666);
         stage.setTitle("PinVim ver.1.0!");
         stage.setScene(scene);
+        stage.getIcons().add(new Image(getClass().getResource("icon.png").toExternalForm()));
         stage.show();
     }
 }

@@ -31,7 +31,7 @@ public class Cycler {
     
     public void execute() throws ParseException, InterruptedException {
         while (true) {
-            System.out.println("Iterating...\nCondition: "+condition+"\nWith: "+cycleVariable+" bound: "+variableBinding+"\nBy: "+slope+"\nScope: "+scope+"\nCheck later: "+afterTesting);
+//            System.out.println("Iterating...\nCondition: "+condition+"\nWith: "+cycleVariable+" bound: "+variableBinding+"\nBy: "+slope+"\nScope: "+scope+"\nCheck later: "+afterTesting);
             if (executionToken) {
                 parseCondition();
                 if (afterTesting) {
@@ -116,11 +116,9 @@ public class Cycler {
     private void iterateFirst() throws ParseException, InterruptedException {
         Register engine = new Register(scope);
         engine.start();
-        System.out.println("Iterating");
         if (accessor.doesExist(cycleVariable.toString())) {
             accessor.compoundModification(cycleVariable.toString(), CompoundAssignmentTypes.ADD, String.valueOf(slope), false);
         } else {
-            System.out.println("increasing value");
             cycleVariable = ((Number) cycleVariable).doubleValue() + slope;
         }
         Evaluator evaluator = new Evaluator(condition);
@@ -138,11 +136,9 @@ public class Cycler {
         } else if (result.equals("true")) {
             Register engine = new Register(scope);
             engine.start();
-            System.out.println("Iterating");
             if (accessor.doesExist(cycleVariable.toString())) {
                 accessor.compoundModification(cycleVariable.toString(), CompoundAssignmentTypes.ADD, String.valueOf(slope), false);
             } else {
-                System.out.println("increasing value");
                 cycleVariable = ((Number) cycleVariable).doubleValue() + slope;
             }
         } else {

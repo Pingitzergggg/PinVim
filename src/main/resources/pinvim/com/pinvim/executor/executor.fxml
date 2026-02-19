@@ -10,7 +10,7 @@
       <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="600.0" spacing="20.0">
          <children>
             <Label fx:id="title" text="Label" />
-            <Button mnemonicParsing="false" onAction="#terminate" text="Terminate" />
+            <Button mnemonicParsing="false" fx:id="terminateButton" onAction="#terminate" text="Terminate" />
          </children>
          <padding>
             <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
@@ -19,7 +19,7 @@
       <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <content>
             <TextFlow fx:id="outputDisplay" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
-               <Text text=" " />
+               <Text />
                <padding>
                   <Insets left="10.0" right="5.0" top="5.0" />
                </padding>
