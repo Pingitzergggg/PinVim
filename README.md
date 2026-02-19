@@ -66,7 +66,7 @@ PinVim/
 
 - `Controller/` stores each controller for each part of the app. The main app controller is `Controller.java` every other controller takes up the `<Launcher Class Name>Controller.java` syntax. This naming convention is present on every other important file regarding the MVC architecture.
 - `Model/` stores the main Model and it's every subcomponent. These components strictly work only with background logic. Inside, subdirectories like `ExecutorModel/` contain the model structure for other subcomponents of the app that require to have their own background logic.
-- `View/` store helper methods for rendering the GUI. This and the `resources/` directory implements the View part of the MVC model.
+- `View/` store helper methods for rendering the GUI. This and the `resources/` directory implement the View part of the MVC model.
 - `debugger/`, `executor/` and `helper/` store the launcher class for the specific subcomponent.
 - `resources/` as stated before, implements the View of the app. It's structure strictly mirrors the one presented in `java/` due to FXML file loading conventions.
 
@@ -159,7 +159,7 @@ public Token(String value) {
 6. While `CodeBase.java` iterates through it's input. It adds every new `Token` to it's output array of type `LinkedList<Token>`.
 7. Then, this output will be available to `Tab.java` via the `getOutput()` method.
 8. An instance of `Tab.java` is created in `Model.java`. In future advancements, this structure would allow the app to handle multiple tabs at the same time. For now, with the one tab implementation `Model.java` kind of looks like a useless middleman, but keep in mind that this approach successfully validates the Open-Closed element of the SOLID principle!
-9. The `Controller.java`, which has the `keyPressed` and `keyReleased` event listeners appends the input with each key, and gets the `LinkedList<Token>` output right after. It communicates with `Tab.java` through the `getTab()` method located in `Model.java` of which the controller has an instance of:
+9. The `Controller.java`, which has the `keyPressed` and `keyReleased` event listeners, appends the input with each key, and gets the `LinkedList<Token>` output right after. It communicates with `Tab.java` through the `getTab()` method located in `Model.java` of which the controller has an instance of.
 10. Then colors get assigned to the tokens in `View.java`'s `getColorCodeForType()` method which is called inside the same class at `getTextFlowContent()`. This produces a `Text[]` array that is filled into the output `TextFlow`:
 ```java
 public Text[] getTextFlowContent(LinkedList<Token> tokens) {
@@ -210,7 +210,7 @@ Difference between `Save` and `Save As`: <br>
 `Save As` will always initialize the popup.
 
 #### State indicator
-The saved indicator, next to the filename indicator, display if the state of the file is exactly the same as the text inside the app's input. If they are, that means that the file is up to date and thus, the `saved` text will appear in green.
+The state indicator, next to the filename indicator, displays if the state of the file is exactly the same as the text inside the app's input. If they are, that means that the file is up to date and thus, the `saved` text will appear in green.
 ![Saved state](./samples/Images/Saved%20state.png)
 Otherwise the `*unsaved` text will appear in red.
 ![Unsaved state](./samples/Images/Unsaved%20state.png)
