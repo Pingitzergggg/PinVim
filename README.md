@@ -1,6 +1,6 @@
 # PinVim IDE
 
----
+
 
 ## An Integrated Development Environment for the programming language [Pingy](https://github.com/Pingitzergggg/Pingy) built in Java FX
 
@@ -8,14 +8,14 @@
 <br>
 *Logo is AI Generated!*
 
----
+
 
 
 ## Why it exists
 
 PinVim was created for the [Pingy](https://github.com/Pingitzergggg/Pingy) interpreted programming language as a simple, open source IDE. It is capable of opening, saving, creating and editing text files with added Pingy Syntax Highlight as well as running the written code with it's built in interpreter.
 
----
+
 
 ## Project Structure
 
@@ -70,7 +70,7 @@ PinVim/
 - `debugger/`, `executor/` and `helper/` store the launcher class for the specific subcomponent.
 - `resources/` as stated before, implements the View of the app. It's structure strictly mirrors the one presented in `java/` due to FXML file loading conventions.
 
----
+
 
 ## How to use it
 
@@ -236,7 +236,7 @@ On the output popup window, you can press `Terminate` to terminate the running p
 
 ***<font color="red">Important:</font> In version 1.0, the `Debug` option is not implemented as the used version of the interpreter is also lacking such features!***
 
----
+
 
 ## Interpreter Integration
 
