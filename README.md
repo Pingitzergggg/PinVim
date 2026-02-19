@@ -64,7 +64,7 @@ PinVim/
 
 ### Structure explanation
 
-- `Controller/` stores each controller for each part of the app. The main app controller is `Controller.java` every other controller takes up the `<Launcher Class Name>Controller.java`. This naming convention is present on every other important file regarding the MVC architecture.
+- `Controller/` stores each controller for each part of the app. The main app controller is `Controller.java` every other controller takes up the `<Launcher Class Name>Controller.java` syntax. This naming convention is present on every other important file regarding the MVC architecture.
 - `Model/` stores the main Model and it's every subcomponent. These components strictly work only with background logic. Inside, subdirectories like `ExecutorModel/` contain the model structure for other subcomponents of the app that require to have their own background logic.
 - `View/` store helper methods for rendering the GUI. This and the `resources/` directory implements the View part of the MVC model.
 - `debugger/`, `executor/` and `helper/` store the launcher class for the specific subcomponent.
