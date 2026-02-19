@@ -5,6 +5,7 @@
 ## An Integrated Development Environment for the programming language [Pingy](https://github.com/Pingitzergggg/Pingy) built in Java FX
 
 ![PinVim logo](./src/main/resources/pinvim/com/pinvim/logo.png)
+<br>
 *Logo is AI Generated!*
 
 ---
