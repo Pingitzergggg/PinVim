@@ -21,11 +21,8 @@
    <Label fx:id="info" text="PinVim version: 1.0" />
    <Label fx:id="info1" layoutX="134.0" layoutY="158.0" text="Pingy version: 1.0" />
    <Label fx:id="info11" layoutX="138.0" layoutY="228.0" text="App created by Fyrra1 and Pingitzergggg" />
-   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-      <children>
-         <Label fx:id="info111" text="Github repository:" />
-         <Hyperlink text="Link" />
-      </children>
-   </HBox>
-    <Button fx:id="mainButton" onAction="#exitStage" prefHeight="32.0" prefWidth="73.0" text="OK" />
+    <Button fx:id="mainButton" onAction="#exitStage" prefHeight="32.0" prefWidth="73.0" text="OK">
+      <VBox.margin>
+         <Insets top="20.0" />
+      </VBox.margin></Button>
 </VBox>

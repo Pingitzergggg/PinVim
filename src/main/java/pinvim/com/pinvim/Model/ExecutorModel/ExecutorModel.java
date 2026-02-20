@@ -18,13 +18,15 @@ public class ExecutorModel{
         processedErrorLines = 1;
         processedOutputLines = 0;
         oldOutputState = new LinkedList<>(pool.getOutputStream());
+        System.out.println("Old state: "+oldOutputState);
         oldErrorState = new LinkedList<>(pool.getErrorStream());
-        changedOutputState = null;
-        changedErrorState = null;
+        changedOutputState = new LinkedList<>();
+        changedErrorState = new LinkedList<>();
     }
 
     public static void run() {
         LinkedList<String> newState = new LinkedList<>(pool.getOutputStream());
+        System.out.println("New state" + newState);
         if (newState.size() > oldOutputState.size()) {
             changedOutputState = new LinkedList<>();
             for (int i = processedOutputLines + 1; i < newState.size(); ++i) {
@@ -32,6 +34,7 @@ public class ExecutorModel{
                 processedOutputLines = i;
             }
             oldOutputState = newState;
+            System.out.println("Old state"+oldOutputState);
         }
         newState = new LinkedList<>(pool.getErrorStream());
         if (newState.size() > oldErrorState.size()) {

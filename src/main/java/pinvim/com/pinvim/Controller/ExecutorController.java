@@ -42,7 +42,8 @@ public class ExecutorController {
             ExecutorModel.init();
             boolean dumpBeforeTerminate = false;
             while (true) {
-                if (!interpreter.isAlive() || interpreter.isInterrupted()) dumpBeforeTerminate = true;
+                if (!interpreter.isAlive() && !interpreter.isInterrupted()) dumpBeforeTerminate = true;
+                if (interpreter.isInterrupted()) break;
                 ExecutorModel.run();
                 LinkedList<String> changedOutput = ExecutorModel.getChangedOutputState() == null ? new LinkedList<>() : ExecutorModel.getChangedOutputState();
                 LinkedList<String> changedError = ExecutorModel.getChangedErrorState() == null ? new LinkedList<>() : ExecutorModel.getChangedErrorState();

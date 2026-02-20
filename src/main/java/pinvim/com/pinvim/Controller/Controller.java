@@ -22,6 +22,7 @@ import java.io.IOException;
 
 public class Controller {
     private final FileChooser fileChooser = new FileChooser();
+    private File lastKnownDirectory = new File(System.getProperty("user.home"));
     private Executor executor;
     private final View view = new View();
     private final Model model = new Model();
@@ -62,8 +63,11 @@ public class Controller {
 
     @FXML
     public void openFile() throws FileNotFoundException {
+        fileChooser.setInitialDirectory(lastKnownDirectory);
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Pingy script .pin", "*.pin"));
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
+            lastKnownDirectory = file.getParentFile();
             model.getTab().setFile(file);
             model.getTab().open();
             fileName.setText("Editing: "+file.getName());
